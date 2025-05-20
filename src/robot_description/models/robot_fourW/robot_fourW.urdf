@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="robot_fourW">
+    <link name="brw">
+        <inertial>
+            <origin xyz="8.076270113788198e-10 -8.471711404611782e-10 0.0010000000000000009" rpy="0.0 -0.0 0.0" />
+            <mass value="0.0007891680745817905" />
+            <inertia ixx="3.4197277116735114e-09" iyy="3.4197285270257323e-09" izz="6.313344188978208e-09" ixy="1.6543612251060553e-24" iyz="0.0" ixz="-1.3234889800848443e-23" />
+        </inertial>
+        <visual name="brw_visual">
+            <origin xyz="-0.0040346900000000005 0.00397486 -0.033" rpy="-3.141592653589793 -1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/brw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="brw_collision">
+            <origin xyz="-0.0040346900000000005 0.00397486 -0.033" rpy="-3.141592653589793 -1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/brw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0.010000253383063153 0.015059584943849494 0.004217585871022689" rpy="0.0 0.0 0.0" />
+            <mass value="0.02494941699556569" />
+            <inertia ixx="1.8593069123257e-06" iyy="8.692521306422306e-07" izz="2.6006184492381023e-06" ixy="-9.622031856110452e-11" iyz="-6.456019151724861e-10" ixz="-6.6673008412653336e-12" />
+        </inertial>
+        <visual name="base_link_visual">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="base_link_collision">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="lidar">
+        <inertial>
+            <origin xyz="1.4848877682993589e-10 8.980776522449219e-10 0.0010000014542771874" rpy="0.0 -0.0 0.0" />
+            <mass value="0.0012330751165340462" />
+            <inertia ixx="8.117743024227962e-09" iyy="8.117745014833845e-09" izz="1.5413437961372473e-08" ixy="-5.293955920339377e-23" iyz="0.0" ixz="-5.293955920339377e-23" />
+        </inertial>
+        <visual name="lidar_visual">
+            <origin xyz="-0.01 -0.014999999325439765 -0.008542238604814584" rpy="0.0 -0.0 0.0" />
+            <geometry>
+                <mesh filename="meshes/lidar.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="lidar_collision">
+            <origin xyz="-0.01 -0.014999999325439765 -0.008542238604814584" rpy="0.0 -0.0 0.0" />
+            <geometry>
+                <mesh filename="meshes/lidar.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="flw">
+        <inertial>
+            <origin xyz="8.076270130441543e-10 8.471711465674048e-10 0.001000000000000003" rpy="0.0 -0.0 0.0" />
+            <mass value="0.0007891680745817905" />
+            <inertia ixx="3.419727711673723e-09" iyy="3.419728527025825e-09" izz="6.313344188978254e-09" ixy="1.3234889800848443e-23" iyz="2.6469779601696886e-23" ixz="1.3234889800848443e-23" />
+        </inertial>
+        <visual name="flw_visual">
+            <origin xyz="-0.005576930059091775 -0.029608652047273414 -0.005542473532670138" rpy="-0.0 1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/flw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="flw_collision">
+            <origin xyz="-0.005576930059091775 -0.029608652047273414 -0.005542473532670138" rpy="-0.0 1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/flw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="frw">
+        <inertial>
+            <origin xyz="8.076270119339313e-10 -8.471711465674048e-10 0.0010000000000000009" rpy="0.0 -0.0 0.0" />
+            <mass value="0.0007891680745817905" />
+            <inertia ixx="3.4197277116736172e-09" iyy="3.419728527025944e-09" izz="6.31334418897836e-09" ixy="-1.3234889800848443e-23" iyz="0.0" ixz="2.6469779601696886e-23" />
+        </inertial>
+        <visual name="frw_visual">
+            <origin xyz="-0.005576930059091775 -0.021391347952726583 -0.03145752646732986" rpy="-3.141592653589793 -1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/frw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="frw_collision">
+            <origin xyz="-0.005576930059091775 -0.021391347952726583 -0.03145752646732986" rpy="-3.141592653589793 -1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/frw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="blw">
+        <inertial>
+            <origin xyz="8.076270130441543e-10 8.471711371305091e-10 0.001000000000000003" rpy="0.0 -0.0 0.0" />
+            <mass value="0.0007891680745817908" />
+            <inertia ixx="3.4197277116736172e-09" iyy="3.4197285270258117e-09" izz="6.313344188978198e-09" ixy="-1.6543612251060553e-23" iyz="0.0" ixz="1.3234889800848443e-23" />
+        </inertial>
+        <visual name="blw_visual">
+            <origin xyz="-0.005576930059091775 0.0033913479527265776 -0.0035424735326701363" rpy="-0.0 1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/blw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="blw_collision">
+            <origin xyz="-0.005576930059091775 0.0033913479527265776 -0.0035424735326701363" rpy="-0.0 1.5707963267948966 0" />
+            <geometry>
+                <mesh filename="meshes/blw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="camera">
+        <inertial>
+            <origin xyz="4.2748069084552755e-09 3.28344038624806e-10 0.00014999800395412154" rpy="0.0 -0.0 0.0" />
+            <mass value="4.5012174053959215e-06" />
+            <inertia ixx="7.183941652729761e-13" iyy="7.18394342110129e-13" izz="1.3692702463027689e-12" ixy="0.0" iyz="0.0" ixz="0.0" />
+        </inertial>
+        <visual name="camera_visual">
+            <origin xyz="-0.010019808571288289 0.005248386000413366 -0.030530519325439764" rpy="1.5707963267948966 -0.0 0.0" />
+            <geometry>
+                <mesh filename="meshes/camera.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+        <collision name="camera_collision">
+            <origin xyz="-0.010019808571288289 0.005248386000413366 -0.030530519325439764" rpy="1.5707963267948966 -0.0 0.0" />
+            <geometry>
+                <mesh filename="meshes/camera.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_link_joint_frw" type="continuous">
+        <origin xyz="0.020499999999999997 0.024512609325439767 0.004039688604814584" rpy="-3.141592653589793 -1.5707963267948966 0" />
+        <parent link="base_link" />
+        <child link="frw" />
+        <axis xyz="0.0 0.0 1.0" />
+    </joint>
+    <joint name="base_link_joint_brw" type="continuous">
+        <origin xyz="0.020499999999999997 0.006012609325439767 0.004039688604814584" rpy="-3.141592653589793 -1.5707963267948966 0" />
+        <parent link="base_link" />
+        <child link="brw" />
+        <axis xyz="0.0 0.0 1.0" />
+    </joint>
+    <joint name="base_link_joint_flw" type="continuous">
+        <origin xyz="-0.0005000000000000004 0.024512609325439767 0.004039688604814584" rpy="-0.0 -1.5707963267948966 0" />
+        <parent link="base_link" />
+        <child link="flw" />
+        <axis xyz="0.0 0.0 1.0" />
+    </joint>
+    <joint name="base_link_joint_blw" type="continuous">
+        <origin xyz="-0.0005000000000000004 0.006012609325439767 0.004039688604814584" rpy="-0.0 -1.5707963267948966 0" />
+        <parent link="base_link" />
+        <child link="blw" />
+        <axis xyz="0.0 0.0 1.0" />
+    </joint>
+    <joint name="base_link_joint_lidar" type="continuous">
+        <origin xyz="0.01 0.014999999325439765 0.008542238604814584" rpy="0.0 -0.0 0.0" />
+        <parent link="base_link" />
+        <child link="lidar" />
+        <axis xyz="0.0 0.0 1.0" />
+    </joint>
+    <joint name="base_link_joint_cam" type="fixed">
+        <origin xyz="0.010131079999999999 0.030530519325439764 0.005272178604814584" rpy="-1.5707963267948966 -0.0 0.0" />
+        <parent link="base_link" />
+        <child link="camera" />
+    </joint>
+</robot>

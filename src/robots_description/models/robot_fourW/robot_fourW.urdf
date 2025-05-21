@@ -140,29 +140,36 @@
             </geometry>
         </collision>
     </link>
+
+
+
+    <!--=======================================Joints===================================-->
+
     <joint name="base_link_joint_frw" type="continuous">
         <origin xyz="-0.4083960717933755 -1.1222850641436977 0.4653274178108625" rpy="1.570796326794897 1.8735013540549048e-16 4.912736883966281e-15" />
         <parent link="base_link" />
         <child link="frw" />
-        <axis xyz="-4.791376291715144e-32 -0.0 1.0" />
+        <axis xyz="0 0 -1" />
     </joint>
     <joint name="base_link_joint_brw" type="continuous">
         <origin xyz="-2.2583960717933897 -1.1222850641437068 0.4653274178108629" rpy="1.570796326794897 1.8735013540549048e-16 4.912736883966281e-15" />
         <parent link="base_link" />
         <child link="brw" />
-        <axis xyz="-4.791376291715144e-32 -0.0 1.0" />
+        <axis xyz="0 0 -1" />
+        <!-- <mimic joint="base_link_joint_frw" multiplier="1.0" offset="0.0"/> -->
     </joint>
     <joint name="base_link_joint_flw" type="continuous">
         <origin xyz="-0.4083960717933846 0.9777149358563016 0.4653274178108632" rpy="-1.5707963267948963 1.8735013540549048e-16 4.912736883966281e-15" />
         <parent link="base_link" />
         <child link="flw" />
-        <axis xyz="4.791376291715144e-32 0.0 1.0" />
+        <axis xyz="0 0 1" />
     </joint>
     <joint name="base_link_joint_blw" type="continuous">
         <origin xyz="-2.2583960717933986 0.9777149358562927 0.4653274178108635" rpy="-1.5707963267948963 1.8735013540549048e-16 4.912736883966281e-15" />
         <parent link="base_link" />
         <child link="blw" />
-        <axis xyz="4.791376291715144e-32 0.0 1.0" />
+        <axis xyz="0 0 1" />
+        <!-- <mimic joint="base_link_joint_flw" multiplier="1.0" offset="0.0"/> -->
     </joint>
     <joint name="base_link_joint_lidar" type="continuous">
         <origin xyz="-1.359657071793387 -0.07228508414370254 0.9155824778108627" rpy="2.9837243786801003e-16 1.8735013540549048e-16 4.912736883966281e-15" />
@@ -175,5 +182,20 @@
         <parent link="base_link" />
         <child link="camera" />
     </joint>
+
+
+    <gazebo>
+        <plugin
+            filename="libignition-gazebo-diff-drive-system.so"
+            name="ignition::gazebo::systems::DiffDrive">
+            <left_joint>base_link_joint_flw</left_joint>
+            <right_joint>base_link_joint_frw</right_joint>
+            <wheel_separation>2.0</wheel_separation>
+            <wheel_radius>0.4</wheel_radius>
+            <odom_publish_frequency>100</odom_publish_frequency>
+            <topic>cmd_vel</topic>
+        </plugin>
+    </gazebo>
+
 </robot>
 

@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- <mesh filename="package://robots_description/models/robot_fourW/meshes -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_fourW">
+    <link name="world"/>
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="-1.353698598503849 -0.07231040440728938 0.4831170589118242" rpy="0.0 0.0 0.0" />
+            <mass value="5" />
+            <inertia ixx="8692.521269052417" iyy="18593.069135791302" izz="26006.184467637227" ixy="0.9622031836888207" iyz="0.06667300271711478" ixz="-6.4560191517398975" />
+        </inertial>
+        <visual name="base_link_visual">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="Red"> <color rgba="1.0 0.0 0.0 1.0"/></material>
+        </visual>
+        <collision name="base_link_collision">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="brw">
+        <inertial>
+            <origin xyz="-3.8343381447702995e-09 -4.798902324409937e-09 0.10000000194436343" rpy="0.0 -0.0 0.0" />
+            <mass value="1" />
+            <inertia ixx="34.19728323184722" iyy="34.19728323189048" izz="63.13344596655185" ixy="-1.7337242752546445e-12" iyz="1.5276668818842154e-12" ixz="1.0942358130705543e-12" />
+        </inertial>
+        <visual name="brw_visual">
+            <origin xyz="1.008396071793393 -0.4648275573294051 -1.3260599966876803" rpy="-1.5707963267948963 -4.91273688396632e-15 1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/brw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="Black"> <color rgba="0.0 0.0 0.0 1.0"/></material>
+        </visual>
+        <collision name="brw_collision">
+            <origin xyz="1.008396071793393 -0.4648275573294051 -1.3260599966876803" rpy="-1.5707963267948963 -4.91273688396632e-15 1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/brw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="lidar">
+        <inertial>
+            <origin xyz="1.2563089057948674e-09 3.1544848866360555e-09 0.0999999999079445" rpy="0.0 -0.0 0.0" />
+            <mass value="0.5" />
+            <inertia ixx="81.17744517179653" iyy="81.17744517185247" izz="154.1343895667851" ixy="-1.3642420526593924e-12" iyz="-2.0463630789890885e-12" ixz="-1.5916157281026244e-12" />
+        </inertial>
+        <visual name="lidar_visual">
+            <origin xyz="1.3596570717933776 0.07228508414369614 -0.9155824778108631" rpy="-2.98372437868009e-16 -1.873501354054936e-16 -4.91273688396632e-15" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/lidar.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="Blue"> <color rgba="0.0 0.0 1.0 1.0"/></material>
+        </visual>
+        <collision name="lidar_collision">
+            <origin xyz="1.3596570717933776 0.07228508414369614 -0.9155824778108631" rpy="-2.98372437868009e-16 -1.873501354054936e-16 -4.91273688396632e-15" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/lidar.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="flw">
+        <inertial>
+            <origin xyz="-3.834348945019883e-09 4.798900405944551e-09 0.09999999805563903" rpy="0.0 -0.0 0.0" />
+            <mass value="1" />
+            <inertia ixx="34.1972832318379" iyy="34.19728323189156" izz="63.13344596654861" ixy="1.9326762412674725e-12" iyz="1.9326762412674725e-12" ixz="-9.094947017729282e-13" />
+        </inertial>
+        <visual name="flw_visual">
+            <origin xyz="0.912643425060391 0.6190515632385829 -1.4873192080396729" rpy="1.5707963267948968 4.91273688396632e-15 -1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/flw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="Black"> <color rgba="0.0 0.0 0.0 1.0"/></material>
+        </visual>
+        <collision name="flw_collision">
+            <origin xyz="0.912643425060391 0.6190515632385829 -1.4873192080396729" rpy="1.5707963267948968 4.91273688396632e-15 -1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/flw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="frw">
+        <inertial>
+            <origin xyz="-3.834305744021549e-09 -4.7989019691385695e-09 0.10000000194436882" rpy="0.0 -0.0 0.0" />
+            <mass value="1" />
+            <inertia ixx="34.19728323141587" iyy="34.197283231904294" izz="63.1334459665386" ixy="-1.7621459846850485e-11" iyz="1.6434853478131117e-11" ixz="1.617195266589988e-11" />
+        </inertial>
+        <visual name="frw_visual">
+            <origin xyz="-0.6873565749395758 -0.6190515632385847 -5.712680791960349" rpy="-1.5707963267948963 -4.91273688396632e-15 1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/frw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="Black"> <color rgba="0.0 0.0 0.0 1.0"/></material>
+        </visual>
+        <collision name="frw_collision">
+            <origin xyz="-0.6873565749395758 -0.6190515632385847 -5.712680791960349" rpy="-1.5707963267948963 -4.91273688396632e-15 1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/frw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="blw">
+        <inertial>
+            <origin xyz="-3.834327344520716e-09 4.7989005480530975e-09 0.09999999805565722" rpy="0.0 -0.0 0.0" />
+            <mass value="1" />
+            <inertia ixx="34.19728323186973" iyy="34.19728323196341" izz="63.133445966618694" ixy="3.780087354243733e-12" iyz="2.9558577807620168e-12" ixz="-3.183231456205249e-12" />
+        </inertial>
+        <visual name="blw_visual">
+            <origin xyz="2.5626434250603904 0.6190515632385832 -0.03731920803967313" rpy="1.5707963267948968 4.91273688396632e-15 -1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/blw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="Black"> <color rgba="0.0 0.0 0.0 1.0"/></material>
+        </visual>
+        <collision name="blw_collision">
+            <origin xyz="2.5626434250603904 0.6190515632385832 -0.03731920803967313" rpy="1.5707963267948968 4.91273688396632e-15 -1.873501354054936e-16" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/blw.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="camera">
+        <inertial>
+            <origin xyz="1.6458219675996589e-09 -5.667908453688142e-10 0.015000001843940253" rpy="0.0 -0.0 0.0" />
+            <mass value="0.2" />
+            <inertia ixx="0.007183942979018809" iyy="0.007183942979011704" izz="0.013692703347185642" ixy="-3.5419573509136786e-34" iyz="3.552713678800501e-15" ixz="-2.6645352591003757e-15" />
+        </inertial>
+        <visual name="camera_visual">
+            <origin xyz="-0.5861970373707414 -0.08539349414369667 -0.1822674953354516" rpy="-3.141592653589793 -1.5707963267948917 0" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/camera.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="Blue"> <color rgba="0.0 0.0 1.0 1.0"/></material>
+        </visual>
+        <collision name="camera_collision">
+            <origin xyz="-0.5861970373707414 -0.08539349414369667 -0.1822674953354516" rpy="-3.141592653589793 -1.5707963267948917 0" />
+            <geometry>
+                <mesh filename="package://robots_description/models/robot_fourW/meshes/camera.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+
+
+
+    <!--=======================================Joints===================================-->
+    <joint name="virtual_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint> 
+    
+    <joint name="base_link_joint_frw" type="continuous">
+        <origin xyz="-0.4083960717933755 -1.1222850641436977 0.4653274178108625" rpy="1.570796326794897 1.8735013540549048e-16 4.912736883966281e-15" />
+        <parent link="base_link" />
+        <child link="frw" />
+        <axis xyz="0 0 -1" />
+    </joint>
+    <joint name="base_link_joint_brw" type="continuous">
+        <origin xyz="-2.2583960717933897 -1.1222850641437068 0.4653274178108629" rpy="1.570796326794897 1.8735013540549048e-16 4.912736883966281e-15" />
+        <parent link="base_link" />
+        <child link="brw" />
+        <axis xyz="0 0 -1" />
+        <mimic joint="base_link_joint_frw" multiplier="1.0" offset="0.0"/>
+    </joint>
+    <joint name="base_link_joint_flw" type="continuous">
+        <origin xyz="-0.4083960717933846 0.9777149358563016 0.4653274178108632" rpy="-1.5707963267948963 1.8735013540549048e-16 4.912736883966281e-15" />
+        <parent link="base_link" />
+        <child link="flw" />
+        <axis xyz="0 0 1" />
+    </joint>
+    <joint name="base_link_joint_blw" type="continuous">
+        <origin xyz="-2.2583960717933986 0.9777149358562927 0.4653274178108635" rpy="-1.5707963267948963 1.8735013540549048e-16 4.912736883966281e-15" />
+        <parent link="base_link" />
+        <child link="blw" />
+        <axis xyz="0 0 1" />
+        <mimic joint="base_link_joint_flw" multiplier="1.0" offset="0.0"/>
+    </joint>
+    <joint name="base_link_joint_lidar" type="continuous">
+        <origin xyz="-1.359657071793387 -0.07228508414370254 0.9155824778108627" rpy="2.9837243786801003e-16 1.8735013540549048e-16 4.912736883966281e-15" />
+        <parent link="base_link" />
+        <child link="lidar" />
+        <axis xyz="0.0 4.930380657631324e-32 1.0" />
+    </joint>
+    <joint name="base_link_joint_cam" type="fixed">
+        <origin xyz="0.19339463820662559 -0.08539349414369497 0.5885762978108627" rpy="-3.1415926535897882 -1.5707963267948957 0" />
+        <parent link="base_link" />
+        <child link="camera" />
+    </joint>
+
+
+    <gazebo>
+        <plugin
+            filename="libignition-gazebo-diff-drive-system.so"
+            name="ignition::gazebo::v6::systems::DiffDrive">
+
+            <left_joint>base_link_joint_flw</left_joint>
+            <right_joint>base_link_joint_frw</right_joint>
+            <wheel_separation>2.0</wheel_separation>
+            <wheel_radius>0.4</wheel_radius>
+            <odom_publish_frequency>100</odom_publish_frequency>
+            <topic>robot_fourW/cmd_vel</topic>
+            <odom_topic>robot_fourW/odom</odom_topic>
+            <tf_topic>robot_fourW/tf</tf_topic>
+        </plugin>
+    </gazebo>
+
+</robot>
+

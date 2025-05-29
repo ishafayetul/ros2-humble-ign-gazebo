@@ -1,41 +1,64 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, ExecuteProcess
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import ExecuteProcess, LogInfo, SetEnvironmentVariable
 from launch_ros.actions import Node
-from ament_index_python.packages import get_package_share_directory
+from launch.substitutions import Command
+from ament_index_python.packages import get_package_share_directory,get_package_prefix
 import os
 
 def generate_launch_description():
-    pkg_dir = get_package_share_directory('robots_description')
-    urdf_path = os.path.join(pkg_dir, 'models','robot_fourW', 'robot_fourW.urdf')
+    pkg_path_share = get_package_share_directory('robots_description')
+    pkg_path_prefix = get_package_prefix('robots_description')
+    robot_xacro_path = os.path.join(pkg_path_share, 'models', 'robot_fourW', 'robot_fourW.urdf.xacro')
+    gz_src_path = pkg_path_prefix+"/share"
 
-    return LaunchDescription([
-        # 1. Launch Ignition Gazebo with a world
-        ExecuteProcess(
-            cmd=['ign', 'gazebo', '-v','4', '-r','empty.sdf'],
-            output='screen'
-        ),
-        # 3. Use xacro to convert and publish robot description
-        Node(
-            package='robot_state_publisher',
-            executable='robot_state_publisher',
-            name='robot_state_publisher',
-            output='screen',
-            parameters=[{
-                'robot_description': open(urdf_path).read()
-            }]
-        ),
+    env_var = SetEnvironmentVariable('IGN_GAZEBO_RESOURCE_PATH',gz_src_path)
+    robot_urdf = Command(['xacro ', robot_xacro_path])
 
-        # 4. Spawn robot in Ignition
-        Node(
-        package='ros_ign_gazebo',
-        executable='create',
-        name='spawn_robot',
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
         output='screen',
-        arguments=[
-            '-name', 'robot_fourW',
-            '-file', urdf_path,
-            '-x', '0', '-y', '0', '-z', '0'
-            ]
-        ),
+        parameters=[{
+            'robot_description': robot_urdf
+        }]
+    )
+
+    joint_state_publisher = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher',
+        output='screen'
+    )
+
+    launch_gz = ExecuteProcess(
+        cmd=['ign', 'gazebo','-v','4','-r','empty.sdf'],
+        output='screen'
+    )
+
+    spawn_robot = Node(
+        package='ros_gz_sim',
+        executable='create',
+        parameters=[{'use_sim_time': True}],
+        arguments=['-name', 'robot_fourW', 
+                   '-string', robot_urdf,
+                   '-x','0', 
+                   '-y','0',
+                   '-z','-0.065'],
+        output='screen'
+    )
+    
+    
+    return LaunchDescription([
+        LogInfo(msg=pkg_path_share),
+        LogInfo(msg=pkg_path_prefix),
+        LogInfo(msg=robot_xacro_path),
+        LogInfo(msg=gz_src_path),
+        #LogInfo(msg=robot_urdf),
+        env_var,
+        # robot_state_publisher,
+        # joint_state_publisher,
+        launch_gz,
+        spawn_robot,
+        
     ])

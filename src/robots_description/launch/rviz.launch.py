@@ -4,30 +4,18 @@ from ament_index_python.packages import get_package_share_directory
 import os
 
 def generate_launch_description():
-    pkg_dir = get_package_share_directory('robots_description')  # <-- Change to your package name
-    urdf_path = os.path.join(pkg_dir, 'models', 'robot_fourW', 'robot_fourW.urdf')
+    pkg_path_share = get_package_share_directory('robots_description')
+    #robot_xacro_path = os.path.join(pkg_path_share, 'models', 'robot_fourW', 'robot_fourW.urdf')
 
+    rviz_node=Node(
+        name="rviz2",
+        package="rviz2",
+        executable="rviz2",
+        output="screen",
+        parameters=[{'use_sim_time': True}],
+        arguments=["-d", os.path.join(pkg_path_share,"rviz","display.rviz")]
+        
+    )
     return LaunchDescription([
-        # Robot State Publisher
-        Node(
-            package='robot_state_publisher',
-            executable='robot_state_publisher',
-            name='robot_state_publisher',
-            output='screen',
-            parameters=[{'robot_description': open(urdf_path).read()}]
-        ),
-        Node(
-            package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui',
-            name='joint_state_publisher_gui',
-            output='screen'
-        ),
-
-        # RViz2
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            output='screen',
-        )
+        rviz_node,
     ])

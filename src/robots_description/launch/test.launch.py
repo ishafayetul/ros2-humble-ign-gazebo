@@ -2,53 +2,27 @@ from launch import LaunchDescription
 from launch.actions import ExecuteProcess, LogInfo, SetEnvironmentVariable
 from launch_ros.actions import Node
 from launch.substitutions import Command
-from ament_index_python.packages import get_package_share_directory
+from ament_index_python.packages import get_package_share_directory,get_package_prefix
 import os
 
 def generate_launch_description():
-    pkg_path = get_package_share_directory('robots_description')
-    robot_xacro_path = os.path.join(pkg_path, 'models', 'robot_fourW', 'robot_fourW.xacro')
-    gz_src_path = os.path.join(pkg_path, 'models', 'robot_fourW')
+    pkg_path_share = get_package_share_directory('robots_description')
+    pkg_path_prefix = get_package_prefix('robots_description')
+    robot_urdf_path = os.path.join(pkg_path_share, 'models', 'robot_fourW', 'robot_fourW.urdf')
+    gz_src_path = pkg_path_prefix+"/share"
 
-    # Set GAZEBO_MODEL_PATH
-    env_var = SetEnvironmentVariable(
-        'GAZEBO_MODEL_PATH',
-        gz_src_path
-    )
+    env_var = SetEnvironmentVariable('IGN_GAZEBO_RESOURCE_PATH',gz_src_path)
 
-    # Process the xacro
-    robot_urdf = Command(
-        ['xacro ', robot_xacro_path]
-    )
-
-    # Launch Gazebo (Classic)
-    gz_world = ExecuteProcess(
-        cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
-        output='screen',
-    )
-
-    # Spawn the robot into Gazebo
-    spawn_robot = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        name='spawn_robot',
-        output='screen',
-        arguments=[
-            '-entity', 'robot_fourW',
-            '-topic', 'robot_description',
-        ]
-    )
-
-    # State publisher
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': robot_urdf}]
+        parameters=[{
+            'robot_description': robot_urdf_path
+        }]
     )
 
-    # Joint state publisher
     joint_state_publisher = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
@@ -56,19 +30,34 @@ def generate_launch_description():
         output='screen'
     )
 
+    launch_gz = ExecuteProcess(
+        cmd=['ign', 'gazebo', '-r','empty.sdf'],
+        output='screen'
+    )
+
+    spawn_robot = Node(
+        package='ros_gz_sim',
+        executable='create',
+        parameters=[{'use_sim_time': True}],
+        arguments=['-name', 'robot_fourW', 
+                   '-file', robot_urdf_path,
+                   '-x','0', 
+                   '-y','0',
+                   '-z','-0.065'],
+        output='screen'
+    )
+    
+    
     return LaunchDescription([
-        LogInfo(msg='---------- Setting GAZEBO_MODEL_PATH ----------'),
+        LogInfo(msg=pkg_path_share),
+        LogInfo(msg=pkg_path_prefix),
+        LogInfo(msg=robot_urdf_path),
+        LogInfo(msg=gz_src_path),
+        #LogInfo(msg=robot_urdf),
         env_var,
-
-        LogInfo(msg='---------- Starting Robot State Publisher ----------'),
-        robot_state_publisher,
-
-        LogInfo(msg='---------- Starting Joint State Publisher ----------'),
-        joint_state_publisher,
-
-        LogInfo(msg='---------- Launching Gazebo ----------'),
-        gz_world,
-
-        LogInfo(msg='---------- Spawning robot_fourW into simulation ----------'),
+        # robot_state_publisher,
+        # joint_state_publisher,
+        launch_gz,
         spawn_robot,
+        
     ])

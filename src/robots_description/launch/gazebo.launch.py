@@ -39,25 +39,24 @@ def generate_launch_description():
     spawn_robot = Node(
         package='ros_gz_sim',
         executable='create',
-        parameters=[{'use_sim_time': True}],
         arguments=['-name', 'robot_fourW', 
-                   '-string', robot_urdf,
+                   '-topic', "robot_description",
                    '-x','0', 
                    '-y','0',
-                   '-z','-0.065'],
+                   '-z','-0.09'],
         output='screen'
     )
     
     
     return LaunchDescription([
-        LogInfo(msg=pkg_path_share),
-        LogInfo(msg=pkg_path_prefix),
-        LogInfo(msg=robot_xacro_path),
-        LogInfo(msg=gz_src_path),
+        # LogInfo(msg=pkg_path_share),
+        # LogInfo(msg=pkg_path_prefix),
+        # LogInfo(msg=robot_xacro_path),
+        # LogInfo(msg=gz_src_path),
         #LogInfo(msg=robot_urdf),
         env_var,
-        # robot_state_publisher,
-        # joint_state_publisher,
+        robot_state_publisher,
+        joint_state_publisher,
         launch_gz,
         spawn_robot,
         

@@ -192,21 +192,24 @@
     </joint>
 
 
-    <gazebo>
+    <!-- <gazebo>
         <plugin
-            filename="libignition-gazebo-diff-drive-system.so"
-            name="ignition::gazebo::v6::systems::DiffDrive">
+            name="ignition::gazebo::v6::systems::DiffDrive"
+            filename="libignition-gazebo6-diff-drive-system.so">
 
             <left_joint>base_link_joint_flw</left_joint>
             <right_joint>base_link_joint_frw</right_joint>
             <wheel_separation>2.0</wheel_separation>
             <wheel_radius>0.4</wheel_radius>
-            <odom_publish_frequency>100</odom_publish_frequency>
-            <topic>robot_fourW/cmd_vel</topic>
-            <odom_topic>robot_fourW/odom</odom_topic>
-            <tf_topic>robot_fourW/tf</tf_topic>
+            <robot_base_frame>base_link</robot_base_frame>
+
+            <odom_publish_frequency>1</odom_publish_frequency>
+            <topic>/robot_fourW/cmd_vel</topic>
+            <odom_topic>/robot_fourW/odom</odom_topic>
+            <odom_frame>odom</odom_frame>
+            <tf_topic>/robot_fourW/tf</tf_topic>
         </plugin>
-    </gazebo>
+    </gazebo> -->
 
 </robot>
 
